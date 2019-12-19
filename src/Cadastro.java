@@ -116,7 +116,7 @@ public class Cadastro extends JFrame{
             
             int code = Integer.parseInt(txtCodigo.getText());
             
-            do{
+            
                 if(code>0 && existeFuncionario(code)==false){
                     g= new Funcionario();
                     g.setCodigo(code);
@@ -141,13 +141,11 @@ public class Cadastro extends JFrame{
                     
                     JOptionPane.showMessageDialog(this,"REGISTO FEITO COM SUCESSO");
                     
-                }
-            }while(code>0);
-         //   JOptionPane.showMessageDialog(this, "CODIGO JA EXISTENTE", "SENHA", 0);}
+                }else{JOptionPane.showMessageDialog(this, "CODIGO EXISTENTE", "ATRIBUICAO", 0);}
+            
         }
         
         public  boolean existeFuncionario(int code){
-            Funcionario a;
             boolean hasCode = false;
             
             for (int i = 0; i < x.size(); i++) {
