@@ -37,14 +37,14 @@ public class Autenticacao extends JFrame{
             contentor.add(painel);
             
             lblNome.setBounds(40, 40, 100, 30); lblSenha.setBounds(40, 80, 100, 30);
-            txtNome.setBounds(120, 40, 150, 30); txtSenha.setBounds(120, 80, 150, 30);
-            butOk.setBounds(40, 140, 70, 30); butCANCEL.setBounds(140, 140, 100, 30);
+            txtNome.setBounds(120, 40, 170, 30); txtSenha.setBounds(120, 80, 170, 30);
+            butOk.setBounds(40, 140, 70, 30); butCANCEL.setBounds(140, 140, 150, 30);
             
             txtNome.setToolTipText("INTRODUZA O SEU NOME");
             txtSenha.setToolTipText("INTRODUZA UMA SENHA VALIDA");
 
             this.setLocation(400, 300);
-            this.setSize(350,270);
+            this.setSize(350,250);
             this.setVisible(true);
             this.setTitle("AUTENTICACAO");
             
@@ -58,6 +58,7 @@ public class Autenticacao extends JFrame{
             File f=new File("NET.TXT");
             FileReader fr=new FileReader(f);
             BufferedReader br=new BufferedReader(fr);
+            
             String nome="", senha="";
             nome=br.readLine();
             while(nome!=null){
@@ -87,7 +88,7 @@ public class Autenticacao extends JFrame{
             new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    dispose();
+                    System.exit(0);
                 }
             }    
         );

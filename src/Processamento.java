@@ -126,19 +126,21 @@ public class Processamento extends JFrame{
             
             Funcionario p;
             int code = Integer.parseInt(txtCodigo.getText());
+            boolean has = false;
             
             for(int i = 0;i<x.size(); i++){
                 if(x.get(i).getCodigo()== code){
                     p=x.get(i); 
                     x.elementAt(i);
                     
+                    has = true;
+                    
                     txtNome.setText(p.nome);
                     cboSexo.setSelectedItem(p.sexo);
                     txtCivil.setText(p.geteCivil());
-                    
-                    
                 }
             }
+            if(!has){JOptionPane.showMessageDialog(this, "CODIGO INESISTENTE", "SENHA", 0);}
     }
     
     public void atribui(){
@@ -175,14 +177,11 @@ public class Processamento extends JFrame{
         
         Funcionario d;
             
-            boolean hasCode = false; 
             int code = Integer.parseInt(txtCodigo.getText());
             
             for(int i = 0; i<x.size(); i++){
                 d = x.get(i);
                 if(d.getCodigo() == code && radActualiza.isSelected()){
-                    
-                    hasCode = true;
                     
                     int m = (int) cboMes.getSelectedIndex();
                 

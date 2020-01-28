@@ -95,6 +95,7 @@ public class Folha extends JFrame{
             
             for(int i = 0;i<x.size(); i++){
                 g=x.get(i);
+                
                   g = x.elementAt(i);
                 
                     int Mes =  cboMes.getSelectedIndex();
@@ -109,8 +110,7 @@ public class Folha extends JFrame{
                     
                     this.setTitle("FOLHA DE SALARIO - " + "" + cboMes.getSelectedItem());
                     
-                        
-                  salario();
+                    salario();
             }    
     }
     

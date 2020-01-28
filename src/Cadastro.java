@@ -36,7 +36,7 @@ public class Cadastro extends JFrame{
         public JButton butActualiza = new JButton ("ACTUALIZAR");        
         public JButton butApaga = new JButton ("APAGAR");
         public JButton butProcessar = new JButton ("PROC.SALARIO");
-        public JButton butMenu = new JButton ("MENU");
+        public JButton butMenu = new JButton ("FOLHA");
         public JButton butLimpar = new JButton ("LIMPAR");
         public JButton butArq = new JButton("ARQ-FICH");
         
@@ -199,8 +199,8 @@ public class Cadastro extends JFrame{
             boolean tem = false;
             
             for(int i = 0;i<x.size(); i++){
-                if(x.get(i).getCodigo()== code){
-                    p=x.get(i); 
+                p=x.get(i); 
+                if(p.getCodigo()== code){
                     
                     tem = true;
                     
@@ -349,7 +349,7 @@ public class Cadastro extends JFrame{
             new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    new Menu_Do_Sistema();
+                    new Folha();
                     dispose();
                 }                
             }
