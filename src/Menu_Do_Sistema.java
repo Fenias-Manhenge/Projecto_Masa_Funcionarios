@@ -71,14 +71,10 @@ public class Menu_Do_Sistema extends JFrame{
                 }                                                                                                                                                     
         );
         
-        iProcessar.addActionListener( 
-                new ActionListener(){ 
-                    public void actionPerformed(ActionEvent e){   
-                        new Processamento();        
-                        dispose();
-                    }     
-                }
-        ); 
+        iProcessar.addActionListener((ActionEvent e) -> {
+            new Processamento();
+            dispose();
+        }); 
         
         iVisualizar.addActionListener( 
                 new ActionListener(){ 
