@@ -55,7 +55,7 @@ public class Autenticacao extends JFrame{
         
     public void ok(){
         try{
-            File f=new File("NET.TXT");
+            File f=new File("C:\\Users\\Fenias\\Documents\\NetBeansProjects\\Projecto_Masa_Funcionarios\\NET.TXT");
             FileReader fr=new FileReader(f);
             BufferedReader br=new BufferedReader(fr);
             
