@@ -22,7 +22,7 @@ public class Folha extends JFrame{
     public JTextField txtTotal = new JTextField ("");
     public JTextField txtInss = new JTextField ("");
 
-    String mes [] = {"","JANEIRO", "FEVEREIRO", "MARCO", "ABRIL", "MAIO",  "JUNHO", "JULHO",
+    String mes [] = {"JANEIRO", "FEVEREIRO", "MARCO", "ABRIL", "MAIO",  "JUNHO", "JULHO",
                             "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
                     };
     public JComboBox cboMes= new JComboBox(mes);
@@ -94,21 +94,19 @@ public class Folha extends JFrame{
             }
             
             for(int i = 0;i<x.size(); i++){
-                g=x.get(i);
-                
-                  g = x.elementAt(i);
+                g = x.get(i);
                 
                     int Mes =  cboMes.getSelectedIndex();
                     
-                    dados1[0] = g.getCodigo()+"";
+                    dados1[0] = g.getCodigo() + "";
                     dados1[1] = g.nome;
                     dados1[2] = g.getSalario()[Mes] + "";
-                    
+
                     if(g.getSalario()[Mes] > 0){
                         modelo.addRow(dados1);
                     }
                     
-                    this.setTitle("FOLHA DE SALARIO - " + "" + cboMes.getSelectedItem());
+                    this.setTitle("FOLHA DE SALARIO - " + "" + cboMes.getSelectedIndex());
                     
                     salario();
             }    

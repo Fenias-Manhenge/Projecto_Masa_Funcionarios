@@ -19,7 +19,7 @@ public class Cadastro extends JFrame{
         public JLabel lblNome = new JLabel ("NOME:");
         public JLabel lblSexo = new JLabel ("SEXO:");
         
-        String lista [] = {"","MASCULINO","FEMENINO"};
+        String lista [] = {"MASCULINO","FEMENINO"};
         public JComboBox cboSexo= new JComboBox(lista);
         
         public JTextField txtCodigo = new JTextField("");

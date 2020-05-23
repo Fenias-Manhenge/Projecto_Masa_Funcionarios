@@ -28,7 +28,7 @@ public class Processamento extends JFrame{
     String lista [] = {"","MASCULINO","FEMENINO"};
     public JComboBox cboSexo= new JComboBox(lista);
     
-    String mes [] = {"","JANEIRO", "FEVEIRO", "MARCO", "ABRIL", "MAIO",  "JUNHO", "JULHO",
+    String mes [] = {"JANEIRO", "FEVEIRO", "MARCO", "ABRIL", "MAIO",  "JUNHO", "JULHO",
                             "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
                     };
     public JComboBox cboMes= new JComboBox(mes);
@@ -208,11 +208,11 @@ public class Processamento extends JFrame{
         
         Funcionario v;
         
-        int code = Integer.parseInt(txtCodigo.getText());
+       // int code = Integer.parseInt(txtCodigo.getText());
         
         for(int i = 0; i<x.size(); i++){
              v = x.get(i);
-                if(v.getCodigo() == code && radAnula.isSelected()){
+                if(v.getCodigo() == Integer.parseInt(txtCodigo.getText()) && radAnula.isSelected()){
                     
                     int mes1 = (int) cboMes.getSelectedIndex();
                     
@@ -239,13 +239,13 @@ public class Processamento extends JFrame{
     
     public void rads(){
         if(radAtribui.isSelected()){
-            atribui();
-        }
+            atribui(); 
+        }    
         if(radActualiza.isSelected()){
-            Actualiza();
+            Actualiza(); 
         }
-        if(radAnula.isSelected()){
-            anula();
+        if (radAnula.isSelected()){
+            anula(); 
         }
     }
     
@@ -257,7 +257,7 @@ public class Processamento extends JFrame{
                 oos.writeObject(x);
                 oos.close();
             }catch(Exception e){
-                JOptionPane.showMessageDialog(this, "Error");
+                JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
             }
         }
 
@@ -269,7 +269,7 @@ public class Processamento extends JFrame{
                 x=(Vector)ois.readObject();
                 ois.close();
             }catch(Exception e){
-                JOptionPane.showMessageDialog(this, "Error");
+                JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
             }
         }
     
