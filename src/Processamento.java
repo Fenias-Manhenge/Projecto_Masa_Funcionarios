@@ -161,16 +161,7 @@ public class Processamento extends JFrame{
         }
         JOptionPane.showMessageDialog(this, "ATRIBUICAO FEITA COM SUCESSO");
         
-        txtCodigo.setText("");
-        txtNome.setText("");
-        cboSexo.setSelectedIndex(-1);
-        txtCivil.setText("");
-        cboMes.setSelectedIndex(-1);
-        txtValor.setText("");
-        radAtribui.setSelected(false);
-        radActualiza.setSelected(false);
-        radQualquer.setSelected(true);
-        radAnula.setSelected(false);
+        limpar();
     }
     
     public void Actualiza(){
@@ -192,16 +183,7 @@ public class Processamento extends JFrame{
             }
             JOptionPane.showMessageDialog(this, "ACTUALIZACAO FEITA COM SUCESSO");
             
-            txtCodigo.setText("");
-            txtNome.setText("");
-            cboSexo.setSelectedIndex(-1);
-            txtCivil.setText("");
-            cboMes.setSelectedIndex(-1);
-            txtValor.setText("");
-            radAtribui.setSelected(false);
-            radActualiza.setSelected(false);
-            radAnula.setSelected(false);
-            radQualquer.setSelected(true);
+        limpar();
     } 
     
     public void anula(){
@@ -221,20 +203,9 @@ public class Processamento extends JFrame{
                     escritaFicheiro();
                 }
         }    
-        
         JOptionPane.showMessageDialog(this, "ANULAMENTO FEITO COM SUCESSO");
             
-            txtCodigo.setText("");
-            txtNome.setText("");
-            cboSexo.setSelectedIndex(-1);
-            txtCivil.setText("");
-            cboMes.setSelectedIndex(-1);
-            txtValor.setText("");
-            radAtribui.setSelected(false);
-            radActualiza.setSelected(false);
-            radAnula.setSelected(false);
-            radQualquer.setSelected(true);
-            
+        limpar();
     }
     
     public void rads(){
@@ -247,6 +218,19 @@ public class Processamento extends JFrame{
         if (radAnula.isSelected()){
             anula(); 
         }
+    }
+    
+    public void limpar(){
+        txtCodigo.setText("");
+        txtNome.setText("");
+        cboSexo.setSelectedIndex(-1);
+        txtCivil.setText("");
+        cboMes.setSelectedIndex(-1);
+        txtValor.setText("");
+        radAtribui.setSelected(false);
+        radActualiza.setSelected(false);
+        radAnula.setSelected(false);
+        radQualquer.setSelected(true);
     }
     
         public void escritaFicheiro(){

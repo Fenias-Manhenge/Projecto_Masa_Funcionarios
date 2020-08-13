@@ -36,15 +36,15 @@ public class Autenticacao extends JFrame{
             painel.add(butOk) ; painel.add(butCANCEL);
             contentor.add(painel);
             
-            lblNome.setBounds(40, 40, 100, 30); lblSenha.setBounds(40, 80, 100, 30);
-            txtNome.setBounds(120, 40, 170, 30); txtSenha.setBounds(120, 80, 170, 30);
-            butOk.setBounds(40, 140, 70, 30); butCANCEL.setBounds(140, 140, 150, 30);
+            lblNome.setBounds(35, 30, 100, 30); lblSenha.setBounds(35, 70, 100, 30);
+            txtNome.setBounds(95, 30, 170, 27); txtSenha.setBounds(95, 70, 170, 25);
+            butOk.setBounds(35, 110, 70, 30); butCANCEL.setBounds(140, 110, 125, 30);
             
             txtNome.setToolTipText("INTRODUZA O SEU NOME");
             txtSenha.setToolTipText("INTRODUZA UMA SENHA VALIDA");
 
             this.setLocation(400, 300);
-            this.setSize(350,250);
+            this.setSize(310,200);
             this.setVisible(true);
             this.setTitle("AUTENTICACAO");
             
@@ -68,6 +68,7 @@ public class Autenticacao extends JFrame{
                     dispose(); break;
                 }else{
                     JOptionPane.showMessageDialog(this, "AUTENTICACAO INVALIDA", "VALIDACAO", 0);
+                    txtNome.setText(""); txtSenha.setText("");
                 }
                 nome=br.readLine();
             }
@@ -95,6 +96,23 @@ public class Autenticacao extends JFrame{
     }
     
     public static void main(String[] args) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Autenticacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Autenticacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Autenticacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Autenticacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
         new Autenticacao();
     }
 }

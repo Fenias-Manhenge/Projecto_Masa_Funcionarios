@@ -106,7 +106,7 @@ public class Folha extends JFrame{
                         modelo.addRow(dados1);
                     }
                     
-                    this.setTitle("FOLHA DE SALARIO - " + "" + cboMes.getSelectedIndex());
+                    this.setTitle("FOLHA DE SALARIO - " + cboMes.getSelectedItem());
                     
                     salario();
             }    

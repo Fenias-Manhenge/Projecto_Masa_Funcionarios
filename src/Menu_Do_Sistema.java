@@ -12,7 +12,6 @@ public class Menu_Do_Sistema extends JFrame{
     
     ImageIcon fundo = new ImageIcon (getClass().getResource("transferir.png"));
     public JLabel lblImagem = new JLabel(fundo);
-    //BufferedImage imagem;
     
     public JMenuBar barra = new JMenuBar();
     public JMenu cadastro = new JMenu("CADASTRO");
@@ -32,8 +31,6 @@ public class Menu_Do_Sistema extends JFrame{
         painel.setLayout(null);
         painel.setBackground(Color.BLACK);
       
-        lblImagem.setFont(new Font ("Arial" , Font.BOLD, 86));
-      
         barra.add(cadastro);
         barra.add(processar);
         barra.add(exit);
@@ -43,8 +40,6 @@ public class Menu_Do_Sistema extends JFrame{
         exit.add(iExit);
          painel.add(lblImagem);
         contentor.add(painel);
-        
-        lblImagem.setBounds(50, 50, 400, 400);
        
         this.setSize(400, 400);
         this.setJMenuBar(barra);
