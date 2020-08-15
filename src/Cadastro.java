@@ -79,7 +79,7 @@ public class Cadastro extends JFrame{
             lblNome.setBounds(40, 70, 80, 30);txtNome.setBounds(140, 70, 180, 30);
             lblSexo.setBounds(40, 110, 80, 30);cboSexo.setBounds(140, 110, 180, 30);
             
-            painelEstado.setBounds(40,180,430,80);         
+            painelEstado.setBounds(40,180,410,80);         
             
             radCasado.setBounds(60, 200, 110, 30);
             radSolteiro.setBounds(60, 220, 110, 30);        
@@ -89,7 +89,7 @@ public class Cadastro extends JFrame{
             butProcessar.setBounds(40, 410, 150, 40);butMenu.setBounds(220, 410, 150, 40);
             butLimpar.setBounds(40, 460, 330, 40);  butArq.setBounds(350, 110, 100, 30);
             
-            this.setSize(600, 600);
+            this.setSize(510, 560);
             this.setVisible(true);
             
             txtCodigo.setToolTipText("INTRODUZA O CODIGO DO FUNCIONARIO");
@@ -115,7 +115,6 @@ public class Cadastro extends JFrame{
             Funcionario g ;
             
             int code = Integer.parseInt(txtCodigo.getText());
-            
             
                 if(code>0 && existeFuncionario(code)==false){
                     g= new Funcionario();

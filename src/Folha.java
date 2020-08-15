@@ -72,7 +72,7 @@ public class Folha extends JFrame{
          scrol.setBounds(40, 40, 470, 202);
          
          this.setVisible(true);
-         this.setSize(600, 500);
+         this.setSize(590, 505);
          
          cboMes.setToolTipText("SELECIONE O MES");
          butVisualiza.setToolTipText("CLIQUE AQUI PARA VISUALIZAR OS DADOS");

@@ -107,7 +107,7 @@ public class Processamento extends JFrame{
             butProcurar.setBounds(285, 50, 140, 30);butExecutar.setBounds(60, 490, 150, 40);
             butArq.setBounds(320, 200, 100, 30); butMenu.setBounds(285, 490, 150, 40);
             
-            this.setSize(600, 650);
+            this.setSize(570, 600);
             this.setVisible(true);
             
             txtCodigo.setToolTipText("DIGITE O CODIGO DO FUNCIONARIO");
