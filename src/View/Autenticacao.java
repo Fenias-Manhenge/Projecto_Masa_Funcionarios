@@ -15,8 +15,10 @@ public class Autenticacao extends JFrame{
         public JLabel lblNome = new JLabel ("NOME:");
         public JLabel lblSenha = new JLabel ("SENHA:");
         
-        public JTextField txtNome = new JTextField("");
-        public JTextField txtSenha = new JTextField("");
+        public JTextField txtNome = new JTextField("Nome");
+        public JTextField txtSenha = new JTextField("Senha");
+        public JTextField txtNome1 = new JTextField("");
+        public JTextField txtSenha1 = new JTextField("");
         
         public JButton butOk = new JButton("OK");
         public JButton butCANCEL = new JButton("CANCEL");
@@ -32,16 +34,23 @@ public class Autenticacao extends JFrame{
             painel.setBackground(Color.decode("#c84e40"));
             
             painel.add(lblNome); painel.add(lblSenha);
-            painel.add(txtNome); painel.add(txtSenha);
+            painel.add(txtNome,1); painel.add(txtSenha,1);
+            painel.add(txtNome1); painel.add(txtSenha1);
             painel.add(butOk) ; painel.add(butCANCEL);
             contentor.add(painel);
-            
+
             lblNome.setBounds(35, 30, 100, 30); lblSenha.setBounds(35, 70, 100, 30);
             txtNome.setBounds(95, 30, 170, 27); txtSenha.setBounds(95, 70, 170, 25);
+            txtNome1.setBounds(95, 30, 170, 27); txtSenha1.setBounds(95, 70, 170, 25);
             butOk.setBounds(35, 110, 70, 30); butCANCEL.setBounds(140, 110, 125, 30);
             
             txtNome.setToolTipText("INTRODUZA O SEU NOME");
             txtSenha.setToolTipText("INTRODUZA UMA SENHA VALIDA");
+            
+            txtNome.setEnabled(false);
+            txtSenha.setEnabled(false);
+            txtNome1.setEnabled(true);
+            txtSenha1.setEnabled(true);
 
             this.setLocation(400, 300);
             this.setSize(310,200);

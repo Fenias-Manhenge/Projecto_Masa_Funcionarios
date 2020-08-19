@@ -111,10 +111,47 @@ public class Cadastro extends JFrame{
             
         }    
         
-        public void registar(){
-            Funcionario g ;
+        // Verifica se os campos estão ou não preenchidos!
+        public boolean validarCampos(){
+            if(txtCodigo.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Preencha o campo codigo!", "Password", 0);
+                txtCodigo.requestFocus();
+                return false;
+            }else
+                if(txtNome.getText().equals("")){
+                    JOptionPane.showMessageDialog(this, "Preencha o campo Nome!", "Nome", 0);
+                    txtNome.requestFocus();
+                    return false;
+            }else 
+                if(radCasado.isSelected() || radSolteiro.isSelected()){
+                    JOptionPane.showMessageDialog(this, "Escolha uma das opcoes!", "Estado Civil", 0);
+                    //radCasado.requestFocus(); radSolteiro.requestFocus();
+                    return false;
+                }
+                
+            return true;
+        }
+        
+        public boolean PreencherObjecto(){
+            Funcionario g = new Funcionario();
             
-            int code = Integer.parseInt(txtCodigo.getText());
+            g.setCodigo(Integer.parseInt(txtCodigo.getText()));
+            g.nome = txtNome.getText();
+            g.sexo = (String) cboSexo.getSelectedItem();
+            if(radCasado.isSelected()){
+                g.seteCivil("CASADO");
+            }else{
+                if(radSolteiro.isSelected()){
+                    g.seteCivil("SOLTEIRO");
+                }
+            }
+            return true;
+        }
+        
+        public void registar(){
+            Funcionario g;
+            
+            /*int code = Integer.parseInt(txtCodigo.getText());
             
                 if(code>0 && existeFuncionario(code)==false){
                     g= new Funcionario();
@@ -131,18 +168,14 @@ public class Cadastro extends JFrame{
                     x.addElement(g);
                     escritaFicheiro();
                     
-                    txtCodigo.setText("");
-                    txtNome.setText("");
-                    cboSexo.setSelectedIndex(-1);
-                    radCasado.setSelected(false);
-                    radSolteiro.setSelected(false);
-                    radQualquer.setSelected(true);
+                    limpar();
                     
                     JOptionPane.showMessageDialog(this,"REGISTO FEITO COM SUCESSO");
                     
                 }else{JOptionPane.showMessageDialog(this, "CODIGO EXISTENTE", "ATRIBUICAO", 0);}
-            
+            */
         }
+        
         
         public  boolean existeFuncionario(int code){
             boolean hasCode = false;
@@ -180,12 +213,7 @@ public class Cadastro extends JFrame{
                     
                     JOptionPane.showMessageDialog(null, "ACTUALIZACAO FEITA COM SUCESSO");
                     
-                    txtCodigo.setText("");
-                    txtNome.setText("");
-                    cboSexo.setSelectedIndex(-1);
-                    radCasado.setSelected(false);
-                    radSolteiro.setSelected(false);
-                    radQualquer.setSelected(true);
+                    limpar();
                 }
             }
             if(!hasCode){JOptionPane.showMessageDialog(this, "CODIGO INESISTENTE", "SENHA", 0);}
@@ -232,12 +260,7 @@ public class Cadastro extends JFrame{
                         escritaFicheiro();
                         JOptionPane.showMessageDialog(this, "REMOCAO FEITA COM SUCESSO");
                         
-                        txtCodigo.setText("");
-                        txtNome.setText("");
-                        cboSexo.setSelectedIndex(-1);
-                        radCasado.setSelected(false);
-                        radSolteiro.setSelected(false);
-                        radQualquer.setSelected(true);
+                        limpar();
                     }
                 }
             }    
@@ -275,7 +298,7 @@ public class Cadastro extends JFrame{
                 ois.close();
             }catch(Exception e){
                 //System.err.println("error: " + e.getMessage());
-                JOptionPane.showMessageDialog(this, "Error");}
+                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Erro", 0);}
         }
         
         public void eventos(){
@@ -284,7 +307,12 @@ public class Cadastro extends JFrame{
             new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    registar();
+                    //registar();
+                    if (validarCampos()) {
+                        if(PreencherObjecto()){
+                            JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Registo", 1);
+                        }
+                    }
                 }                
             }
             );

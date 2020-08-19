@@ -9,17 +9,16 @@ public class Funcionario implements Serializable {
     public String nome;
     public String sexo;
     private String eCivil;
-    private double salario [] = new double[13];;
+    private double salario [] = new double[12];;
 
     public Funcionario(int codigo, String nome, String sexo, String eCivil) {
         this.codigo = codigo;
         this.nome = nome;
         this.sexo = sexo;
         this.eCivil = eCivil;
-        
-       for(int i=0;i<salario.length;i++){
+        for(int i=0;i<salario.length;i++){
           this.salario[i]=0.0;
-       }
+        }
     }
 
     Funcionario() {
