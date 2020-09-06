@@ -1,15 +1,22 @@
+package View;
+
 /**
  *
  * @author Fenias
  */
+import Data.*;
+import Model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.io.*;
+import java.sql.PreparedStatement;
 
 public class Cadastro extends JFrame{
 
+    private Conexao con = null;
+    
     public Vector <Funcionario> x = new Vector();
         
         public JPanel painel = new JPanel();
@@ -42,7 +49,7 @@ public class Cadastro extends JFrame{
         
         public Container contentor = getContentPane();
         
-        public Cadastro(){
+        public Cadastro() throws Exception{
             super ("CADASTRO DE FUNCIONARIO");
             
             painel.setLayout(null);
@@ -108,10 +115,9 @@ public class Cadastro extends JFrame{
             
             leituraFicheiro();
             eventos();
-            
         }    
         
-        // Verifica se os campos estão ou não preenchidos!
+        /*Verifica se os campos estão ou não preenchidos!*/
         public boolean validarCampos(){
             if(txtCodigo.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Preencha o campo codigo!", "Password", 0);
@@ -122,16 +128,17 @@ public class Cadastro extends JFrame{
                     JOptionPane.showMessageDialog(this, "Preencha o campo Nome!", "Nome", 0);
                     txtNome.requestFocus();
                     return false;
-            }else 
+            }/*else 
                 if(radCasado.isSelected() || radSolteiro.isSelected()){
                     JOptionPane.showMessageDialog(this, "Escolha uma das opcoes!", "Estado Civil", 0);
                     //radCasado.requestFocus(); radSolteiro.requestFocus();
                     return false;
-                }
+                }*/
                 
             return true;
         }
         
+        // preenche os objectos Funcionario
         public boolean PreencherObjecto(){
             Funcionario g = new Funcionario();
             
@@ -140,10 +147,8 @@ public class Cadastro extends JFrame{
             g.sexo = (String) cboSexo.getSelectedItem();
             if(radCasado.isSelected()){
                 g.seteCivil("CASADO");
-            }else{
-                if(radSolteiro.isSelected()){
+            }else if(radSolteiro.isSelected()){
                     g.seteCivil("SOLTEIRO");
-                }
             }
             return true;
         }
@@ -298,24 +303,41 @@ public class Cadastro extends JFrame{
                 ois.close();
             }catch(Exception e){
                 //System.err.println("error: " + e.getMessage());
-                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Erro", 0);}
+                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Erro", 0);
+            }
         }
         
-        public void eventos(){
+        public void eventos() throws Exception{
             
             butIntroduz.addActionListener(
             new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     //registar();
-                    if (validarCampos()) {
-                        if(PreencherObjecto()){
+                    try{
+                        if (validarCampos()){ // verifica se os campos estão preenchidos
+                            con = new Conexao();
+                            String sql = "insert into register values (?,?,?,?)";
+                            PreparedStatement ps = con.getConnection().prepareStatement(sql);
+
+                            ps.setInt(1, Integer.parseInt(txtCodigo.getText()));
+                            ps.setString(2, txtNome.getText());
+                            ps.setString(3, (String)cboSexo.getSelectedItem());
+                            if(radCasado.isSelected())
+                                ps.setString(4, "Casado");
+                            else if(radSolteiro.isSelected())
+                                ps.setString(4, "Solteiro");
+
+                            ps.execute();
+                            
                             JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Registo", 1);
                         }
-                    }
-                }                
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Inserir", 0);
+                    }   
+                }
             }
-            );
+            );  
             
             butProcurar.addActionListener(
             new ActionListener(){
@@ -383,8 +405,8 @@ public class Cadastro extends JFrame{
             );
         }  
         
-        public static void main(String[] args) {
+        public static void main(String[] args) throws Exception {
             new Cadastro();
         }
-    
-}
+}    
+

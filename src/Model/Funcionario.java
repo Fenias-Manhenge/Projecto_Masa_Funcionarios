@@ -1,8 +1,11 @@
+package Model;
+
 /**
  *
  * @author Fenias
  */
 import java.io.*;
+
 public class Funcionario implements Serializable {
 
     private int codigo;
@@ -21,7 +24,7 @@ public class Funcionario implements Serializable {
         }
     }
 
-    Funcionario() {
+    public Funcionario() {
 
     }
 

@@ -1,4 +1,3 @@
-
 package Data;
 
 /**
@@ -12,8 +11,8 @@ public class Conexao {
 
     public Conexao() throws Exception{
         Class.forName("net.sourceforge.jtds.jdbc.Driver");
-        String url = "jdbc:jtds:sqlserver://FENIAS-MANHENGE\\XIMIX:1433/EMPLOYEE";
-        con = DriverManager.getConnection(url, "employee", "13579");
+        String url1 = "jdbc:jtds:sqlserver://FENIAS-MANHENGE:1433/EMPLOYEE";
+        con = DriverManager.getConnection(url1, "employee", "13579");
     }
     
     public Connection getConnection(){

@@ -1,3 +1,4 @@
+package View;
 
 /**
  *
@@ -47,10 +48,10 @@ public class Autenticacao extends JFrame{
             txtNome.setToolTipText("INTRODUZA O SEU NOME");
             txtSenha.setToolTipText("INTRODUZA UMA SENHA VALIDA");
             
-            txtNome.setEnabled(false);
+            /*txtNome.setEnabled(false);
             txtSenha.setEnabled(false);
             txtNome1.setEnabled(true);
-            txtSenha1.setEnabled(true);
+            txtSenha1.setEnabled(true);*/
 
             this.setLocation(400, 300);
             this.setSize(310,200);
@@ -84,7 +85,7 @@ public class Autenticacao extends JFrame{
             br.close(); 
         }catch(IOException e){JOptionPane.showMessageDialog(this, "ERROR");}  
     }
-   
+
     public void eventos(){
         butOk.addActionListener(
                 new ActionListener() {

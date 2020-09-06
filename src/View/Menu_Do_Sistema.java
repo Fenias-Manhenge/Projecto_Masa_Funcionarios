@@ -1,3 +1,5 @@
+package View;
+
 /**
  *
  * @author Fenias
@@ -5,6 +7,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Menu_Do_Sistema extends JFrame{
         
@@ -52,8 +56,12 @@ public class Menu_Do_Sistema extends JFrame{
         iCadastro.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        new Cadastro();
-                        dispose();
+                        try {
+                            new Cadastro();
+                            dispose();
+                        } catch (Exception ex) {
+                            Logger.getLogger(Menu_Do_Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }       
                 } 
         );

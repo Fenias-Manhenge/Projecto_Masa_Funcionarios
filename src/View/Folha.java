@@ -1,7 +1,10 @@
+package View;
+
 /**
  *
  * @author Fenias
  */
+import Model.Funcionario;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
