@@ -12,7 +12,7 @@ public class Funcionario implements Serializable {
     public String nome;
     public String sexo;
     private String eCivil;
-    private double salario [] = new double[12];;
+    private double salario [] = new double[11];;
 
     public Funcionario(int codigo, String nome, String sexo, String eCivil) {
         this.codigo = codigo;

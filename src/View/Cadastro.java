@@ -11,11 +11,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.io.*;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Cadastro extends JFrame{
 
     private Conexao con = null;
+    Funcionario f = null;
     
     public Vector <Funcionario> x = new Vector();
         
@@ -309,44 +312,75 @@ public class Cadastro extends JFrame{
         
         public void eventos() throws Exception{
             
-            butIntroduz.addActionListener(
-            new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    //registar();
-                    try{
-                        if (validarCampos()){ // verifica se os campos estão preenchidos
-                            con = new Conexao();
-                            String sql = "insert into register values (?,?,?,?)";
-                            PreparedStatement ps = con.getConnection().prepareStatement(sql);
-
-                            ps.setInt(1, Integer.parseInt(txtCodigo.getText()));
-                            ps.setString(2, txtNome.getText());
-                            ps.setString(3, (String)cboSexo.getSelectedItem());
-                            if(radCasado.isSelected())
-                                ps.setString(4, "Casado");
-                            else if(radSolteiro.isSelected())
-                                ps.setString(4, "Solteiro");
-
-                            ps.execute();
-                            
-                            JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Registo", 1);
-                        }
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Inserir", 0);
-                    }   
+            butIntroduz.addActionListener((ActionEvent ae) -> {
+                try{
+                    if (validarCampos()){ // verifica se os campos estão preenchidos
+                        con = new Conexao();
+                        String sql = "insert into register values (?,?,?,?)";
+                        PreparedStatement ps = con.getConnection().prepareStatement(sql);
+                        
+                        ps.setInt(1, Integer.parseInt(txtCodigo.getText()));
+                        ps.setString(2, txtNome.getText());
+                        ps.setString(3, (String)cboSexo.getSelectedItem());
+                        if(radCasado.isSelected())
+                            ps.setString(4, "Casado");
+                        else if(radSolteiro.isSelected())
+                            ps.setString(4, "Solteiro");
+                        
+                        ps.execute(); 
+                        limpar();
+                        
+                        JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Registo", 1);
+                    }
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Inserir", 0);   
                 }
-            }
-            );  
+            });  
             
-            butProcurar.addActionListener(
-            new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                  procurar();
-                }                
-            }
-            );
+            /* pesquisa dados de um determinado Funcionario na base de dados */
+            butProcurar.addActionListener((ActionEvent ae) -> {
+
+                try {
+                    con = new Conexao();
+                    
+                    /* verifica se o campo codigo esta vazio ou nao*/
+                    if(txtCodigo.getText().equals("")){
+                        JOptionPane.showMessageDialog(this, "Preencha o campo codigo!", "Password", 0);
+                        txtCodigo.requestFocus();
+                    }else{
+                        String sql = "select* From register where code = ?";// clausula para a solitacão de dados 
+                        PreparedStatement ps = con.getConnection().prepareStatement(sql); // executa a clausula
+
+                        ps.setInt(1, Integer.parseInt(txtCodigo.getText()));
+                        ResultSet rs = ps.executeQuery();// executa a solicitacão de dados
+
+                        while(rs.next()){
+                            f = new Funcionario();  //cria  um  novo  objecto...
+                            f.nome = rs.getString("names");  //  preenche os  objectos   Funcionario...
+                            f.sexo = rs.getString("sex");   //  com  os dados das...
+                            f.seteCivil(rs.getString("maritalStatus")); //  tabelas  do  SQL...
+                        }
+                        if(f == null){ // verifica se o objecto procurado esta vazio
+                            JOptionPane.showMessageDialog(null, "Registo não encontradato", "Solicitação", 1);   
+                            txtCodigo.setText("");
+                            txtCodigo.requestFocus();
+                        }else{
+                            /* preenche os campos com os dados preenchidos nos objectos */
+                            txtNome.setText(f.nome);
+                            cboSexo.setSelectedItem(f.sexo);
+                            if(f.geteCivil().equalsIgnoreCase("Casado")){
+                                radCasado.setSelected(true);
+                            }else{
+                                radSolteiro.setSelected(true);
+                            }
+                        }  
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Solicitação", 0);   
+                } catch (Exception ex) {
+                    Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
             
             butActualiza.addActionListener(
             new ActionListener(){
